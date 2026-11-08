@@ -150,6 +150,12 @@ h1, h2, h3, p { margin-top: 0; }
 .not-found { min-height: 100vh; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
 .not-found h1 { color: var(--green-950); font-size: clamp(30px, 5vw, 48px); }
 .not-found p:not(.eyebrow) { color: var(--muted); }
+.policy-content { max-width: 850px; padding: 32px 38px; border: 1px solid #e1e9e3; border-radius: 12px; background: #fff; box-shadow: var(--shadow); }
+.policy-content h2 { margin: 28px 0 8px; color: var(--green-950); font-size: 19px; }
+.policy-content h2:first-of-type { margin-top: 25px; }
+.policy-content p { color: #45554e; }
+.policy-date { padding-bottom: 16px; border-bottom: 1px solid var(--line); color: var(--green-950) !important; }
+.policy-disclaimer { padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; }
 
 @media (max-width: 760px) {
   .container { width: min(100% - 32px, 600px); }
@@ -172,6 +178,7 @@ h1, h2, h3, p { margin-top: 0; }
   .notice-card { order: 0; }
   .form-card { order: 1; padding: 22px 18px; }
   .page-intro { padding-top: 40px; }
+  .policy-content { padding: 23px 19px; }
 }
 @media (max-width: 480px) {
   .container { width: calc(100% - 28px); }
