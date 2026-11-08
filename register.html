@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123c35">
+  <meta name="description" content="قدّم طلب التسجيل في أكاديمية مفتاح العلوم. يُجهّز النموذج رسالة واتساب لمراجعتها وإرسالها يدويًا.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="التسجيل | أكاديمية مفتاح العلوم">
+  <meta property="og:description" content="ابدأ رحلتك في تعلّم القرآن الكريم والتجويد والقراءات.">
+  <title>التسجيل | أكاديمية مفتاح العلوم</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/register.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">انتقل إلى المحتوى الرئيسي</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="أكاديمية مفتاح العلوم - الصفحة الرئيسية">
+        <span class="brand-mark" aria-hidden="true">م</span><span class="brand-copy"><strong>أكاديمية مفتاح العلوم</strong><small>لتعليم كلام الحي القيوم</small></span>
+      </a>
+      <nav class="site-nav" aria-label="التنقل الرئيسي">
+        <a href="index.html">الرئيسية</a><a href="register.html" aria-current="page">التسجيل</a><a href="contact.html">اتصل بنا</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" class="page-main">
+    <section class="page-intro container">
+      <p class="eyebrow">خطوتك الأولى</p>
+      <h1>نموذج التسجيل</h1>
+      <p>أدخل بياناتك بعناية. بعد التحقق منها ستُجهّز رسالة واتساب لتراجعها وترسلها بنفسك إلى الأكاديمية.</p>
+    </section>
+    <div class="container form-layout">
+      <aside class="notice-card" aria-label="معلومات مهمة">
+        <span class="notice-icon" aria-hidden="true">!</span>
+        <h2>قبل أن تبدأ</h2>
+        <p>ستُفتح خدمة واتساب مع رسالة تحتوي على المعلومات التي أدخلتها. لن تُرسل البيانات من هذا الموقع، ولن يتم إرسال الرسالة إلا بعد ضغطك على زر الإرسال داخل واتساب.</p>
+        <p>تحقّق من صحة تاريخ الميلاد قبل المتابعة، أو عدّله في رسالة واتساب قبل إرسالها.</p>
+        <p class="required-note"><span aria-hidden="true">*</span> الحقول المشار إليها بنجمة مطلوبة.</p>
+      </aside>
+      <form class="form-card" id="registration-form" novalidate>
+        <fieldset class="form-section">
+          <legend><span>١</span> البيانات الشخصية</legend>
+          <div class="form-grid">
+            <div class="field">
+              <label for="full-name">الاسم الكامل <span class="required-mark" aria-hidden="true">*</span></label>
+              <input id="full-name" name="fullName" type="text" autocomplete="name" required aria-describedby="full-name-error">
+              <span class="field-error" id="full-name-error"></span>
+            </div>
+            <div class="field">
+              <label for="gender">النوع <span class="required-mark" aria-hidden="true">*</span></label>
+              <select id="gender" name="gender" required aria-describedby="gender-error">
+                <option value="">اختر</option><option value="ذكر">ذكر</option><option value="أنثى">أنثى</option>
+              </select>
+              <span class="field-error" id="gender-error"></span>
+            </div>
+            <div class="field">
+              <label for="birth-date">تاريخ الميلاد <span class="required-mark" aria-hidden="true">*</span></label>
+              <input id="birth-date" name="birthDate" type="date" required aria-describedby="birth-date-help birth-date-error">
+              <small id="birth-date-help" class="field-help">أدخله بدقة، أو صحّحه في رسالة واتساب قبل إرسالها.</small>
+              <span class="field-error" id="birth-date-error"></span>
+            </div>
+            <div class="field">
+              <label for="nationality">الجنسية <span class="required-mark" aria-hidden="true">*</span></label>
+              <input id="nationality" name="nationality" type="text" autocomplete="country-name" required aria-describedby="nationality-error">
+              <span class="field-error" id="nationality-error"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend><span>٢</span> معلومات التواصل</legend>
+          <div class="form-grid">
+            <div class="field">
+              <label for="country">الدولة <span class="required-mark" aria-hidden="true">*</span></label>
+              <input id="country" name="country" type="text" autocomplete="country-name" required aria-describedby="country-error">
+              <span class="field-error" id="country-error"></span>
+            </div>
+            <div class="field">
+              <label for="address">العنوان <span class="optional-mark">(اختياري)</span></label>
+              <input id="address" name="address" type="text" autocomplete="street-address">
+            </div>
+            <div class="field">
+              <label for="phone">رقم الهاتف مع رمز الدولة <span class="required-mark" aria-hidden="true">*</span></label>
+              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="+201234567890" required aria-describedby="phone-help phone-error">
+              <small id="phone-help" class="field-help">استخدم أرقامًا إنجليزية وبالصيغة الدولية، مثل + ورمز الدولة ثم الرقم، دون مسافات.</small>
+              <span class="field-error" id="phone-error"></span>
+            </div>
+            <div class="field">
+              <label for="email">البريد الإلكتروني <span class="required-mark" aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" dir="ltr" required aria-describedby="email-error">
+              <span class="field-error" id="email-error"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend><span>٣</span> خلفيتك واهتمامك</legend>
+          <div class="form-grid">
+            <div class="field">
+              <label for="memorized-parts">عدد الأجزاء المحفوظة من القرآن الكريم <span class="required-mark" aria-hidden="true">*</span></label>
+              <input id="memorized-parts" name="memorizedParts" type="number" min="0" max="30" step="1" inputmode="numeric" required aria-describedby="memorized-parts-help memorized-parts-error">
+              <small id="memorized-parts-help" class="field-help">أدخل عدد الأجزاء الكاملة فقط.</small>
+              <span class="field-error" id="memorized-parts-error"></span>
+            </div>
+            <div class="field">
+              <label for="referral">كيف تعرّفت على الأكاديمية؟ (مكان العلم بنا) <span class="optional-mark">(اختياري)</span></label>
+              <input id="referral" name="referral" type="text">
+            </div>
+            <div class="field field-wide">
+              <label for="reason">سبب الرغبة في الالتحاق بالأكاديمية <span class="required-mark" aria-hidden="true">*</span></label>
+              <textarea id="reason" name="reason" rows="4" required aria-describedby="reason-error"></textarea>
+              <span class="field-error" id="reason-error"></span>
+            </div>
+            <div class="field field-wide">
+              <label for="notes">ملاحظات إضافية <span class="optional-mark">(اختياري)</span></label>
+              <textarea id="notes" name="notes" rows="3"></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button class="button button-primary" type="submit">تجهيز رسالة التسجيل عبر واتساب</button>
+          <p class="privacy-note">لن تُحفظ بياناتك أو تُرسل إلى خادم من خلال هذا الموقع.</p>
+        </div>
+        <div class="form-feedback" id="registration-feedback" role="status" aria-live="polite" tabindex="-1"></div>
+        <div class="handoff-tools" id="registration-handoff" hidden>
+          <a class="button button-secondary" id="registration-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer">فتح واتساب يدويًا</a>
+          <button class="button button-quiet" id="registration-copy-button" type="button">نسخ الرسالة</button>
+          <label class="field-help" for="registration-message">إذا تعذّر فتح واتساب، يمكنك نسخ نص الرسالة هنا:</label>
+          <textarea id="registration-message" rows="8" readonly></textarea>
+          <p class="copy-feedback" id="registration-copy-feedback" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="footer-brand" href="index.html">أكاديمية مفتاح العلوم</a>
+      <nav class="footer-nav" aria-label="روابط التذييل"><a href="index.html">الرئيسية</a><a href="register.html">التسجيل</a><a href="contact.html">اتصل بنا</a></nav>
+      <p>جميع الحقوق محفوظة © <span data-current-year>2026</span> أكاديمية مفتاح العلوم</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123c35">
+  <meta name="description" content="تواصل مع أكاديمية مفتاح العلوم للاستفسار. جهّز رسالة واتساب وأرسلها بنفسك.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="اتصل بنا | أكاديمية مفتاح العلوم">
+  <meta property="og:description" content="يسعدنا تواصلك واستفسارك عن الأكاديمية.">
+  <title>اتصل بنا | أكاديمية مفتاح العلوم</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/contact.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">انتقل إلى المحتوى الرئيسي</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="أكاديمية مفتاح العلوم - الصفحة الرئيسية">
+        <span class="brand-mark" aria-hidden="true">م</span><span class="brand-copy"><strong>أكاديمية مفتاح العلوم</strong><small>لتعليم كلام الحي القيوم</small></span>
+      </a>
+      <nav class="site-nav" aria-label="التنقل الرئيسي">
+        <a href="index.html">الرئيسية</a><a href="register.html">التسجيل</a><a href="contact.html" aria-current="page">اتصل بنا</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" class="page-main">
+    <section class="page-intro container">
+      <p class="eyebrow">نحن هنا للتواصل</p>
+      <h1>اتصل بنا</h1>
+      <p>يسعدنا استقبال أسئلتك واستفساراتك. اكتب رسالتك، وسنجهّزها في واتساب لتراجعها وترسلها بنفسك.</p>
+    </section>
+    <div class="container contact-layout">
+      <section class="contact-aside" aria-labelledby="contact-note-title">
+        <div class="contact-symbol" aria-hidden="true">✉</div>
+        <h2 id="contact-note-title">تواصل بكل طمأنينة</h2>
+        <p>سيُفتح واتساب بالرسالة التي تكتبها بعد تأكيدك. لا تُرسل أي بيانات إلى خادم من هذا الموقع، ولا يتم إرسال الرسالة حتى تضغط زر الإرسال داخل واتساب.</p>
+        <a href="register.html">هل ترغب بالتسجيل؟ انتقل إلى نموذج التسجيل</a>
+      </section>
+      <form class="form-card contact-form" id="contact-form" novalidate>
+        <div class="field">
+          <label for="contact-name">الاسم <span class="required-mark" aria-hidden="true">*</span></label>
+          <input id="contact-name" name="name" type="text" autocomplete="name" required aria-describedby="contact-name-error">
+          <span class="field-error" id="contact-name-error"></span>
+        </div>
+        <div class="field">
+          <label for="contact-message">الرسالة <span class="required-mark" aria-hidden="true">*</span></label>
+          <textarea id="contact-message" name="message" rows="8" required aria-describedby="contact-message-error"></textarea>
+          <span class="field-error" id="contact-message-error"></span>
+        </div>
+        <button class="button button-primary" type="submit">إرسال عبر واتساب</button>
+        <p class="privacy-note">سيتم تجهيز الرسالة فقط؛ الإرسال النهائي يتم من داخل واتساب.</p>
+        <div class="form-feedback" id="contact-feedback" role="status" aria-live="polite" tabindex="-1"></div>
+        <div class="handoff-tools" id="contact-handoff" hidden>
+          <a class="button button-secondary" id="contact-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer">فتح واتساب يدويًا</a>
+          <button class="button button-quiet" id="contact-copy-button" type="button">نسخ الرسالة</button>
+          <label class="field-help" for="contact-message-copy">إذا تعذّر فتح واتساب، يمكنك نسخ نص الرسالة هنا:</label>
+          <textarea id="contact-message-copy" rows="6" readonly></textarea>
+          <p class="copy-feedback" id="contact-copy-feedback" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="footer-brand" href="index.html">أكاديمية مفتاح العلوم</a>
+      <nav class="footer-nav" aria-label="روابط التذييل"><a href="index.html">الرئيسية</a><a href="register.html">التسجيل</a><a href="contact.html">اتصل بنا</a></nav>
+      <p>جميع الحقوق محفوظة © <span data-current-year>2026</span> أكاديمية مفتاح العلوم</p>
+    </div>
+  </footer>
+</body>
+</html>
