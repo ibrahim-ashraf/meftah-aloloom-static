@@ -52,10 +52,10 @@
     "٩ - سبتمبر", "١٠ - أكتوبر", "١١ - نوفمبر", "١٢ - ديسمبر"
   ];
 
-  // حساب الحدود الدقيقة لتاريخ الميلاد (السن بين 5 سنوات و80 سنة باليوم والشهر)
+  // حساب الحدود الدقيقة لتاريخ الميلاد (السن بين 5 سنوات و40 سنة باليوم والشهر)
   var today = new Date();
   var maxBirthDate = new Date(today.getFullYear() - 5, today.getMonth(), today.getDate());
-  var minBirthDate = new Date(today.getFullYear() - 80, today.getMonth(), today.getDate());
+  var minBirthDate = new Date(today.getFullYear() - 40, today.getMonth(), today.getDate());
 
   var maxBirthYear = maxBirthDate.getFullYear();
   var minBirthYear = minBirthDate.getFullYear();
@@ -92,7 +92,7 @@
       // الطالب أصغر سن (5 سنوات): لا تظهر الشهور اللاحقة لتاريخ اليوم
       endMonth = maxBirthDate.getMonth() + 1;
     } else if (yearVal === minBirthYear) {
-      // الطالب أكبر سن (80 سنة): لا تظهر الشهور السابقة لتاريخ اليوم
+      // الطالب أكبر سن (40 سنة): لا تظهر الشهور السابقة لتاريخ اليوم
       startMonth = minBirthDate.getMonth() + 1;
     }
 
@@ -191,7 +191,7 @@
       if (chosen > maxBirthDate) {
         message = "سن الطالب لا يمكن أن يقل عن ٥ سنوات.";
       } else if (chosen < minBirthDate) {
-        message = "سن الطالب لا يمكن أن يتجاوز ٨٠ سنة.";
+        message = "سن الطالب لا يمكن أن يتجاوز ٤٠ سنة.";
       }
     }
 
