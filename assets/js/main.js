@@ -59,22 +59,16 @@
       return;
     }
 
-    var accepted = window.confirm("ستُجهّز بياناتك في رسالة وتُفتح خدمة واتساب لإرسالها إلى الأكاديمية. راجع الرسالة، ولن تُرسل إلا بعد ضغطك على زر الإرسال داخل واتساب. هل تريد المتابعة؟");
-    if (!accepted) {
-      elements.feedback.textContent = "لم يُفتح واتساب. يمكنك مراجعة بياناتك أو تعديلها ثم المحاولة مجددًا.";
-      return;
-    }
-
     elements.messageField.value = message;
     elements.whatsappLink.href = url;
     elements.handoff.hidden = false;
-    elements.feedback.textContent = "سيُفتح واتساب الآن مع الرسالة المجهزة. لم تُرسل الرسالة بعد؛ راجعها واضغط زر الإرسال داخل واتساب لإتمام الإرسال.";
+    elements.feedback.textContent = "تم تجهيز رسالتك بنجاح! سيتم فتح واتساب الآن. يُرجى مراجعة الرسالة والضغط على زر الإرسال داخل واتساب لإتمام التواصل.";
 
     var whatsappWindow = window.open(url, "_blank");
     if (whatsappWindow) {
       whatsappWindow.opener = null;
     } else {
-      elements.feedback.textContent = "تعذّر فتح واتساب تلقائيًا. استخدم زر «فتح واتساب يدويًا» أو انسخ نص الرسالة أدناه. لم تُرسل الرسالة.";
+      elements.feedback.textContent = "تم تجهيز الرسالة! إذا لم يفتح واتساب تلقائيًا، اضغط على زر «فتح واتساب يدويًا» أدناه أو انسخ نص الرسالة.";
       elements.messageField.focus();
       elements.messageField.select();
     }

@@ -16,24 +16,80 @@
 - `assets/js/contact.js`: التحقق من نموذج التواصل وبناء رسالته.
 - `.nojekyll`: تعطيل معالجة Jekyll الافتراضية في GitHub Pages.
 
-## تعديل بيانات الأكاديمية
+## ربط نموذج التسجيل بـ Google Sheets وإرسال الإيميلات
 
-افتح `assets/js/config.js` وعدّل القيم:
+لحفظ بيانات الطلاب تلقائيًا في جدول Google وإرسال بريد إلكتروني تأكيدي للطالب وإشعار لك، اتبع الخطوات البسيطة التالية (مجانية تمامًا وبلا أي خادم):
 
-```js
-window.ACADEMY_CONFIG = Object.freeze({
-  whatsappPhone: "",
-  facebookUrl: "",
-  whatsappChannelUrl: ""
-});
+1. أنشئ جدول بيانات جديد في [Google Sheets](https://sheets.new) وسمّه مثلًا: `تسجيلات أكاديمية مفتاح العلوم`.
+2. في الصف الأول (العناوين)، اكتب:
+   - `تاريخ التسجيل` | `الاسم الكامل` | `تاريخ الميلاد` | `الجنسية` | `الدولة` | `الهاتف` | `البريد الإلكتروني` | `عدد الأجزاء` | `ملاحظات`
+3. من القائمة العلوية للجدول، اختر **Extensions (الإضافات)** ثم **Apps Script**.
+4. احذف الكود الموجود والصق الكود التالي:
+
+```javascript
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = JSON.parse(e.postData.contents);
+
+    // إضافة صف جديد بالبيانات
+    sheet.appendRow([
+      data.submittedAt || new Date().toLocaleString("ar-EG"),
+      data.fullName || "",
+      data.birthDate || "",
+      data.nationality || "مصري",
+      data.country || "مصر",
+      data.phone || "",
+      data.email || "",
+      data.memorizedParts || "",
+      data.notes || ""
+    ]);
+
+    // 1. إرسال بريد إلكتروني تأكيدي للطالب
+    if (data.email) {
+      var studentSubject = "تأكيد استلام طلب التسجيل | أكاديمية مفتاح العلوم";
+      var studentBody = "أهلًا بك يا " + data.fullName + "،\n\n" +
+        "نسعد بانضمامك، ونفيدك بأنه تم استلام طلب تسجيلك بنجاح في أكاديمية مفتاح العلوم لتعليم كلام الحي القيوم.\n" +
+        "سنتواصل معك عبر الهاتف / واتساب قريبًا لتنسيق موعد حلقتك الفردية الأولى ومناقشة تفاصيل الدراسة.\n\n" +
+        "بيانات طلبك:\n" +
+        "- الاسم: " + data.fullName + "\n" +
+        "- تاريخ الميلاد: " + data.birthDate + "\n" +
+        "- الهاتف: " + data.phone + "\n" +
+        "- الأجزاء المحفوظة: " + data.memorizedParts + "\n\n" +
+        "أكاديمية مفتاح العلوم";
+      MailApp.sendEmail(data.email, studentSubject, studentBody);
+    }
+
+    // 2. إرسال إشعار فوري لك على بريدك
+    var adminEmail = Session.getActiveUser().getEmail();
+    var adminSubject = "طالب جديد مسجل: " + data.fullName;
+    var adminBody = "تم تسجيل طالب جديد عبر الموقع:\n\n" +
+      "- الاسم: " + data.fullName + "\n" +
+      "- تاريخ الميلاد: " + data.birthDate + "\n" +
+      "- الهاتف: " + data.phone + "\n" +
+      "- البريد: " + data.email + "\n" +
+      "- الأجزاء المحفوظة: " + data.memorizedParts + "\n" +
+      "- الملاحظات: " + (data.notes || "لا يوجد");
+    MailApp.sendEmail(adminEmail, adminSubject, adminBody);
+
+    return ContentService.createTextOutput(JSON.stringify({ status: "success" }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({ status: "error", message: err.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
 ```
 
-- `whatsappPhone`: أدخل رقم واتساب الأكاديمية بالصيغة الدولية، أرقام فقط، من دون علامة `+` أو مسافات. لا يعمل إرسال النماذج قبل إدخال رقم صحيح.
-- `facebookUrl`: رابط صفحة الأكاديمية على فيسبوك كاملًا ويبدأ بـ `https://`.
-- `whatsappChannelUrl`: رابط قناة الأكاديمية على واتساب كاملًا ويبدأ بـ `https://`.
-- تبقى الروابط غير المتاحة فارغة؛ لا تضع بيانات تخمينية.
+5. اضغط **Deploy (نشر)** في أعلى الصفحة ثم اختر **New deployment**.
+6. اضغط على أيقونة الترس بجانب "Select type" واختر **Web app**.
+7. في خانة **Execute as** اختر **Me**.
+8. في خانة **Who has access** اختر **Anyone**.
+9. اضغط **Deploy** ووافق على الصلاحيات المطلوبة (Authorize access).
+10. انسخ الرابط الممنوح لك تحت **Web app URL**.
+11. افتح ملف `assets/js/config.js` في مشروعك، وضعه في خانة `googleSheetUrl: "الرابط_هنا"`.
 
-اسم الأكاديمية الظاهر داخل الصفحات مكتوب في ملفات HTML، لذا حدّثه فيها إذا تغيّر الاسم.
+بذلك يصبح النموذج جاهزًا لاستقبال بيانات الطلاب فوريًا في الجدول وإرسال الإيميلات آليًا!
 
 ## التشغيل محليًا
 
