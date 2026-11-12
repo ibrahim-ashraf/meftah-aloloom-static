@@ -52,11 +52,16 @@
     "٩ - سبتمبر", "١٠ - أكتوبر", "١١ - نوفمبر", "١٢ - ديسمبر"
   ];
 
-  // إعداد قائمة السنوات بنطاق سن الطالب من 5 إلى 80 سنة
-  var currentYear = new Date().getFullYear();
-  var maxBirthYear = currentYear - 5;
-  var minBirthYear = currentYear - 80;
+  // حساب الحدود الدقيقة لتاريخ الميلاد (السن بين 5 سنوات و80 سنة باليوم والشهر)
+  var today = new Date();
+  var maxBirthDate = new Date(today.getFullYear() - 5, today.getMonth(), today.getDate());
+  var minBirthDate = new Date(today.getFullYear() - 80, today.getMonth(), today.getDate());
 
+  var maxBirthYear = maxBirthDate.getFullYear();
+  var minBirthYear = minBirthDate.getFullYear();
+
+  // إعداد قائمة السنوات
+  birthYear.innerHTML = '<option value="">اختر السنة</option>';
   for (var y = maxBirthYear; y >= minBirthYear; y--) {
     var optYear = document.createElement("option");
     optYear.value = String(y);
@@ -64,13 +69,48 @@
     birthYear.appendChild(optYear);
   }
 
-  // إعداد قائمة الشهور
-  monthNames.forEach(function (name, index) {
-    var optMonth = document.createElement("option");
-    optMonth.value = String(index + 1);
-    optMonth.textContent = name;
-    birthMonth.appendChild(optMonth);
-  });
+  function updateMonths() {
+    var yearVal = parseInt(birthYear.value, 10);
+    var prevMonth = birthMonth.value;
+
+    birthMonth.innerHTML = '<option value="">اختر الشهر</option>';
+
+    if (!yearVal) {
+      birthMonth.disabled = true;
+      birthDay.innerHTML = '<option value="">اختر اليوم</option>';
+      birthDay.disabled = true;
+      return;
+    }
+
+    birthMonth.disabled = false;
+
+    // تحديد الشهور المتاحة وفق الحد الأدنى والأقصى للسن
+    var startMonth = 1;
+    var endMonth = 12;
+
+    if (yearVal === maxBirthYear) {
+      // الطالب أصغر سن (5 سنوات): لا تظهر الشهور اللاحقة لتاريخ اليوم
+      endMonth = maxBirthDate.getMonth() + 1;
+    } else if (yearVal === minBirthYear) {
+      // الطالب أكبر سن (80 سنة): لا تظهر الشهور السابقة لتاريخ اليوم
+      startMonth = minBirthDate.getMonth() + 1;
+    }
+
+    for (var m = startMonth; m <= endMonth; m++) {
+      var optMonth = document.createElement("option");
+      optMonth.value = String(m);
+      optMonth.textContent = monthNames[m - 1];
+      birthMonth.appendChild(optMonth);
+    }
+
+    if (prevMonth && parseInt(prevMonth, 10) >= startMonth && parseInt(prevMonth, 10) <= endMonth) {
+      birthMonth.value = prevMonth;
+      updateDays();
+    } else {
+      birthDay.innerHTML = '<option value="">اختر اليوم</option>';
+      birthDay.disabled = true;
+    }
+  }
 
   function updateDays() {
     var yearVal = parseInt(birthYear.value, 10);
@@ -85,26 +125,33 @@
     }
 
     birthDay.disabled = false;
-    var maxDays = new Date(yearVal, monthVal, 0).getDate();
+    var maxDaysInMonth = new Date(yearVal, monthVal, 0).getDate();
 
-    for (var d = 1; d <= maxDays; d++) {
+    // تحديد الأيام المتاحة وفق الحد الأدنى والأقصى للسن بدقة
+    var startDay = 1;
+    var endDay = maxDaysInMonth;
+
+    if (yearVal === maxBirthYear && monthVal === (maxBirthDate.getMonth() + 1)) {
+      endDay = maxBirthDate.getDate();
+    } else if (yearVal === minBirthYear && monthVal === (minBirthDate.getMonth() + 1)) {
+      startDay = minBirthDate.getDate();
+    }
+
+    for (var d = startDay; d <= endDay; d++) {
       var optDay = document.createElement("option");
       optDay.value = String(d);
       optDay.textContent = String(d);
       birthDay.appendChild(optDay);
     }
 
-    if (prevDay && parseInt(prevDay, 10) <= maxDays) {
+    if (prevDay && parseInt(prevDay, 10) >= startDay && parseInt(prevDay, 10) <= endDay) {
       birthDay.value = prevDay;
     }
   }
 
   birthYear.addEventListener("change", function () {
     if (birthYear.value) {
-      birthMonth.disabled = false;
-      if (birthMonth.value) {
-        updateDays();
-      }
+      updateMonths();
     } else {
       birthMonth.value = "";
       birthMonth.disabled = true;
@@ -141,8 +188,10 @@
       var m = parseInt(birthMonth.value, 10) - 1;
       var d = parseInt(birthDay.value, 10);
       var chosen = new Date(y, m, d);
-      if (chosen > new Date()) {
-        message = "تاريخ الميلاد لا يمكن أن يكون في المستقبل.";
+      if (chosen > maxBirthDate) {
+        message = "سن الطالب لا يمكن أن يقل عن ٥ سنوات.";
+      } else if (chosen < minBirthDate) {
+        message = "سن الطالب لا يمكن أن يتجاوز ٨٠ سنة.";
       }
     }
 
@@ -169,6 +218,13 @@
 
     if (field.required && !value) {
       message = "هذا الحقل مطلوب.";
+    } else if (field.id === "full-name" && value) {
+      var nameWords = value.split(/\s+/).filter(function (part) {
+        return part.length >= 2;
+      });
+      if (nameWords.length < 4) {
+        message = "يرجى كتابة الاسم الرباعي كاملًا (أربعة أسماء على الأقل، مثال: أحمد محمد علي إبراهيم).";
+      }
     } else if (field.id === "phone" && value) {
       var raw = value.replace(/[\s\-]/g, "");
       var isEgyptian = /^(\+?20|0)?1[0125][0-9]{8}$/.test(raw);
