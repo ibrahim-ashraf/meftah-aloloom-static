@@ -17,17 +17,32 @@
   var birthDateError = document.getElementById("birth-date-error");
   var phoneInput = document.getElementById("phone");
 
-  // تهيئة مكتبة intl-tel-input لمصر فقط مع إيقاف القائمة المنسدلة وترجمة اسم مصر للعربية
+  // ترجمة وإعدادات مكتبة intl-tel-input المتوافقة مع v25
+  var arTranslations = {
+    eg: "مصر",
+    selectedCountryAriaLabel: "البلد المحدد",
+    noCountrySelected: "لم يتم تحديد أي بلد",
+    countryListAriaLabel: "قائمة الدول",
+    searchPlaceholder: "بحث",
+    zeroSearchResults: "لم يتم العثور على نتائج",
+    oneSearchResult: "تم العثور على نتيجة واحدة",
+    multipleSearchResults: "تم العثور على ${count} من النتائج"
+  };
+
   var iti = null;
   if (window.intlTelInput && phoneInput) {
     iti = window.intlTelInput(phoneInput, {
+      i18n: arTranslations,
       onlyCountries: ["eg"],
-      initialCountry: "eg",
       allowDropdown: false,
-      separateDialCode: true,
+      showFlags: true,
+      initialCountry: "eg",
+      strictMode: true,
       nationalMode: true,
-      localizedCountries: { eg: "مصر" },
-      utilsScript: "assets/vendor/intl-tel-input/utils.js"
+      separateDialCode: false,
+      loadUtils: function () {
+        return import("https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js");
+      }
     });
   }
 

@@ -161,7 +161,7 @@ h1, h2, h3, p { margin-top: 0; }
 
 /* تنسيقات حقل الهاتف intl-tel-input */
 .iti { width: 100%; direction: ltr; }
-.iti input#phone { width: 100%; min-height: 47px; padding-left: 54px; font-family: inherit; }
+.iti input#phone { width: 100%; min-height: 47px; font-family: inherit; }
 .iti__country-list { text-align: right; direction: rtl; }
 
 /* بطاقة نجاح التسجيل */
