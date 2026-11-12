@@ -11,6 +11,7 @@
   <meta property="og:title" content="التسجيل | أكاديمية مفتاح العلوم">
   <meta property="og:description" content="ابدأ رحلتك في تعلّم القرآن الكريم والتجويد والقراءات.">
   <title>التسجيل | أكاديمية مفتاح العلوم</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
   <link rel="stylesheet" href="assets/vendor/intl-tel-input/intlTelInput.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/vendor/intl-tel-input/intlTelInput.min.js" defer></script>
@@ -24,8 +25,8 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="أكاديمية مفتاح العلوم - الصفحة الرئيسية">
-        <span class="brand-mark" aria-hidden="true">م</span><span class="brand-copy"><strong>أكاديمية مفتاح
-            العلوم</strong><small>لتعليم كلام الحي القيوم</small></span>
+        <img class="brand-logo" src="assets/images/logo.png" alt="شعار أكاديمية مفتاح العلوم" width="46" height="46">
+        <span class="brand-copy"><strong>أكاديمية مفتاح العلوم</strong><small>لتعليم كلام الحي القيوم</small></span>
       </a>
       <nav class="site-nav" aria-label="التنقل الرئيسي">
         <a href="index.html">الرئيسية</a><a href="register.html" aria-current="page">التسجيل</a><a
@@ -143,18 +144,26 @@
           </div>
         </fieldset>
 
+        <div class="field field-checkbox">
+          <label for="privacy-consent" class="checkbox-label">
+            <input type="checkbox" id="privacy-consent" name="privacyConsent" required aria-describedby="privacy-consent-error">
+            <span>أوافق على <a href="privacy.html" target="_blank" rel="noopener noreferrer">سياسة الخصوصية</a> وشروط تسجيل البيانات بالأكاديمية. <span class="required-mark" aria-hidden="true">*</span></span>
+          </label>
+          <span class="field-error" id="privacy-consent-error"></span>
+        </div>
+
         <div class="form-actions">
           <button class="button button-primary" id="register-submit-btn" type="submit">
             <span class="btn-text">إرسال طلب التسجيل</span>
           </button>
-          <p class="privacy-note">سيتم حفظ طلبك وإرسال رسالة تأكيد فورية إلى بريدك الإلكتروني.</p>
+          <p class="privacy-note">سيتم حفظ طلبك وإرسال تأكيد فوري لبريدك الإلكتروني، ثم سنتواصل معك مباشرة عبر واتساب لتنسيق موعد حلقتك الفردية.</p>
         </div>
         <div class="form-feedback" id="registration-feedback" role="status" aria-live="polite" tabindex="-1"></div>
         <div class="success-card" id="registration-success" hidden>
           <div class="success-icon" aria-hidden="true">✓</div>
           <h2>تم استلام طلب تسجيلك بنجاح!</h2>
           <p id="success-email-notice"></p>
-          <p>سنتواصل معك عبر الهاتف / واتساب لتحديد موعد حلقتك الفردية الأولى ومناقشة تفاصيل الدراسة.</p>
+          <p class="whatsapp-notice-highlight">سنتواصل معك مباشرة عبر <strong>واتساب</strong> على رقمك المسجل لتحديد موعد حلقتك الفردية الأولى ومناقشة تفاصيل الدراسة.</p>
           <div class="success-actions">
             <a class="button button-secondary" id="whatsapp-direct-link" href="#" target="_blank" rel="noopener noreferrer">
               مراسلة الأكاديمية عبر واتساب (اختياري)
@@ -167,7 +176,10 @@
   </main>
   <footer class="site-footer">
     <div class="container footer-inner">
-      <a class="footer-brand" href="index.html">أكاديمية مفتاح العلوم</a>
+      <a class="footer-brand" href="index.html">
+        <img class="footer-logo" src="assets/images/logo.png" alt="" width="34" height="34" aria-hidden="true">
+        <span>أكاديمية مفتاح العلوم</span>
+      </a>
       <nav class="footer-nav" aria-label="روابط التذييل"><a href="index.html">الرئيسية</a><a
           href="register.html">التسجيل</a><a href="contact.html">اتصل بنا</a><a href="privacy.html">الخصوصية</a></nav>
       <p>جميع الحقوق محفوظة © <span data-current-year>2026</span> أكاديمية مفتاح العلوم</p>

@@ -32,6 +32,7 @@ button, a { touch-action: manipulation; }
 .site-header { position: relative; z-index: 2; background: #fff; border-bottom: 1px solid #edf1ed; }
 .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: inline-flex; align-items: center; gap: 11px; color: var(--green-950); text-decoration: none; }
+.brand-logo { width: 44px; height: 44px; object-fit: contain; border-radius: 8px; flex-shrink: 0; }
 .brand-mark { width: 43px; height: 43px; display: grid; place-items: center; border: 1px solid #c8d8cf; border-radius: 50% 50% 7px 50%; color: var(--green-800); font-size: 23px; font-weight: 700; }
 .brand-copy { display: grid; line-height: 1.5; }
 .brand-copy strong { font-size: 15px; }
@@ -99,7 +100,8 @@ h1, h2, h3, p { margin-top: 0; }
 
 .site-footer { color: #dce8df; background: var(--green-950); }
 .footer-inner { min-height: 95px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 19px; }
-.footer-brand { color: #fff; font-weight: 700; text-decoration: none; }
+.footer-brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; font-weight: 700; text-decoration: none; }
+.footer-logo { width: 32px; height: 32px; object-fit: contain; border-radius: 6px; flex-shrink: 0; }
 .footer-nav { flex-wrap: wrap; gap: 8px 18px; }
 .footer-nav a { color: #e2ece4; font-size: 13px; text-decoration: none; }
 .footer-inner > p { margin: 0; color: #d0ded4; font-size: 12px; }
@@ -152,17 +154,23 @@ h1, h2, h3, p { margin-top: 0; }
 .handoff-tools textarea { direction: rtl; font-size: 13px; }
 .copy-feedback { margin: 0; color: var(--green-800); font-size: 13px; }
 
+/* تنسيقات مربع اختيار سياسة الخصوصية */
+.field-checkbox { margin: 12px 0 6px; }
+.checkbox-label { display: inline-flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 14px; color: var(--ink); line-height: 1.6; }
+.checkbox-label input[type="checkbox"] { width: 19px; height: 19px; min-height: 19px; margin-top: 2px; accent-color: var(--green-800); cursor: pointer; flex-shrink: 0; }
+
 /* تنسيقات حقل الهاتف intl-tel-input */
 .iti { width: 100%; direction: ltr; }
 .iti input#phone { width: 100%; min-height: 47px; padding-left: 54px; font-family: inherit; }
 .iti__country-list { text-align: right; direction: rtl; }
 
 /* بطاقة نجاح التسجيل */
-.success-card { margin-top: 24px; padding: 28px 24px; border: 2px solid #20594d; border-radius: 12px; background: #f3f8f4; text-align: center; animation: fadeIn .3s ease; }
+.success-card { margin-top: 24px; padding: 28px 24px; border: 2px solid #20594d; border-radius: 12px; background: #f3f8f4; text-align: center; }
 .success-card[hidden] { display: none; }
 .success-icon { width: 48px; height: 48px; display: grid; place-items: center; margin: 0 auto 14px; border-radius: 50%; color: #fff; background: var(--green-800); font-size: 24px; font-weight: 700; }
 .success-card h2 { margin-bottom: 8px; color: var(--green-950); font-size: 22px; }
 .success-card p { color: #354a3f; font-size: 15px; margin-bottom: 12px; }
+.whatsapp-notice-highlight { margin-top: 10px; padding: 12px 14px; border: 1px solid #c2dbcb; border-radius: 8px; background: #eaf3ed; color: var(--green-950); font-size: 14px; line-height: 1.6; }
 .success-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 18px; }
 
 .contact-layout { max-width: 900px; display: grid; grid-template-columns: .8fr 1.2fr; align-items: start; gap: 24px; }

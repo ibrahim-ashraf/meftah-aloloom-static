@@ -17,14 +17,16 @@
   var birthDateError = document.getElementById("birth-date-error");
   var phoneInput = document.getElementById("phone");
 
-  // تهيئة مكتبة intl-tel-input لمصر فقط
+  // تهيئة مكتبة intl-tel-input لمصر فقط مع إيقاف القائمة المنسدلة وترجمة اسم مصر للعربية
   var iti = null;
   if (window.intlTelInput && phoneInput) {
     iti = window.intlTelInput(phoneInput, {
       onlyCountries: ["eg"],
       initialCountry: "eg",
-      nationalMode: true,
+      allowDropdown: false,
       separateDialCode: true,
+      nationalMode: true,
+      localizedCountries: { eg: "مصر" },
       utilsScript: "assets/vendor/intl-tel-input/utils.js"
     });
   }
@@ -189,6 +191,17 @@
       firstInvalid = !birthYear.value ? birthYear : (!birthMonth.value ? birthMonth : birthDay);
     }
 
+    var consentInput = document.getElementById("privacy-consent");
+    var consentError = document.getElementById("privacy-consent-error");
+    if (consentInput && !consentInput.checked) {
+      if (consentError) consentError.textContent = "يجب الموافقة على سياسة الخصوصية للمتابعة.";
+      consentInput.setAttribute("aria-invalid", "true");
+      if (!firstInvalid) firstInvalid = consentInput;
+    } else if (consentError) {
+      consentError.textContent = "";
+      if (consentInput) consentInput.setAttribute("aria-invalid", "false");
+    }
+
     if (firstInvalid) {
       feedback.textContent = "يرجى مراجعة الحقول المحددة وتصحيحها قبل الإرسال.";
       firstInvalid.focus();
@@ -285,4 +298,15 @@
     input.addEventListener("input", function () { validateField(field); });
     input.addEventListener("change", function () { validateField(field); });
   });
+
+  var consentField = document.getElementById("privacy-consent");
+  if (consentField) {
+    consentField.addEventListener("change", function () {
+      var err = document.getElementById("privacy-consent-error");
+      if (consentField.checked) {
+        if (err) err.textContent = "";
+        consentField.setAttribute("aria-invalid", "false");
+      }
+    });
+  }
 }());
